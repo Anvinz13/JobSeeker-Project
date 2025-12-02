@@ -1,0 +1,31 @@
+﻿@model Project.Models.loginmodel
+@{
+    ViewBag.Title = "Login_load";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>LOGIN</h2>
+@using (Html.BeginForm("Login_click", "login", FormMethod.Get))
+{
+<div>
+    <label>Username</label>
+</div>
+ <div>
+ @Html.TextBoxFor(m => m.username)
+@Html.ValidationMessageFor(m => m.username)
+ </div>
+
+ <div>
+  <label>Password</label>
+ </div>
+ <div>
+ @Html.TextBoxFor(m => m.pass)
+ @Html.ValidationMessageFor(m => m.pass)
+ </div>
+<div>
+ <div>
+ <input type="submit" value="LOGIN" />
+  @Html.DisplayFor(m => m.logmsg)
+ </div>
+ </div>}
+

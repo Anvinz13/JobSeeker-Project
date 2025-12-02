@@ -1,0 +1,28 @@
+﻿@model Project.Models.applicationmodel
+@{
+    ViewBag.Title = "app_load";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Application Details</h2>
+<div>
+    @using (Html.BeginForm("app_click", "Apps", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+<div>
+    <label>provide your resume</label>
+</div>
+                <div>
+                    @Html.TextBox("File", "", new { Type = "File" })
+                </div>
+
+                                <div>
+                                    <input type="submit" value="upload your application" />
+                                    @Html.DisplayFor(m => m.msg)
+                                </div>}
+</div>
+@{ if (TempData["msg"] != null)
+    {
+<script>
+            alert('@TempData["msg"]')
+</script>
+ } }

@@ -1,0 +1,63 @@
+﻿@model Project.Models.Jobcls
+@{
+    ViewBag.Title = "Job_load";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ADD JOB DETAILS</h2>
+
+<div>
+    @using (Html.BeginForm("Job_click", "Jobs", FormMethod.Post))
+    {
+<div>
+    <label>Required Skill:</label>
+</div>
+  <div>
+ @Html.TextBoxFor(m => m.skill)
+   @Html.ValidationMessageFor(m => m.skill)
+  </div>
+
+ <div>
+      <label>Required Experience:</label>
+</div>
+<div>
+      @Html.TextBoxFor(m => m.exp)
+       @Html.ValidationMessageFor(m => m.exp)
+</div>
+
+ <div>
+     <label>Job status:</label>
+ </div>
+<div>
+      @Html.TextBoxFor(m => m.status)
+
+</div>
+ <div>
+     <label>Last Date:</label>
+</div>
+<div>
+@Html.TextBoxFor(m => m.ldate)
+ @Html.ValidationMessageFor(m => m.ldate)
+</div>
+
+                                                                                                                                <div>
+                                                                                                                                    <label>Job Location:</label>
+                                                                                                                                </div>
+                                                                                                                                                <div>
+                                                                                                                                                    @Html.TextBoxFor(m => m.loc)
+                                                                                                                                                    @Html.ValidationMessageFor(m => m.loc)
+                                                                                                                                                </div>
+
+                                                                                                                                                                <div>
+                                                                                                                                                                    <label>Salary:</label>
+                                                                                                                                                                </div>
+                                                                                                                                                                                <div>
+                                                                                                                                                                                    @Html.TextBoxFor(m => m.sal)
+
+                                                                                                                                                                                </div>
+                                                                                                                                                                                                <div>
+                                                                                                                                                                                                    <input type="submit" value=" ADD" />
+                                                                                                                                                                                                    @Html.DisplayFor(m => m.msg)
+                                                                                                                                                                                                </div>}
+</div>
+
