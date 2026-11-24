@@ -1,7 +1,52 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "About JobSeeker";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<div class="portal-card" style="margin-top: 20px;">
+    <div class="portal-card-header">
+        <h2>About JobSeeker Portal</h2>
+        <p>Empowering careers and streamlining talent acquisition</p>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8 col-sm-12">
+            <p style="font-size: 16px; line-height: 1.8; color: #334155;">
+                <strong>JobSeeker Portal</strong> is an intuitive web-based recruitment and employment platform built to simplify the hiring journey for both candidates and employers. We bridge the gap between skilled job seekers looking for meaningful career opportunities and organizations seeking qualified talent.
+            </p>
+            <p style="font-size: 15px; line-height: 1.7; color: #64748b;">
+                Whether you are a fresh graduate entering the tech or commercial workforce, an experienced professional seeking your next leadership role, or a growing enterprise looking to scale your engineering team, our platform gives you the tools to succeed.
+            </p>
+
+            <h3 style="margin-top: 30px; font-size: 20px;">Our Core Missions</h3>
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-sm-6">
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; margin-bottom: 15px;">
+                        <h4 style="font-size: 16px; color: #2563eb; margin-top: 0;">For Candidates</h4>
+                        <p style="margin-bottom: 0; font-size: 13.5px;">Provide an accessible, transparent, and direct path to apply for verified job postings without unnecessary friction.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; margin-bottom: 15px;">
+                        <h4 style="font-size: 16px; color: #16a34a; margin-top: 0;">For Employers</h4>
+                        <p style="margin-bottom: 0; font-size: 13.5px;">Offer recruiters an efficient, structured job publishing and resume management system to fill positions quickly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-sm-12">
+            <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 24px;">
+                <h4 style="font-weight: 700; color: #1e40af; margin-top: 0;">Platform Highlights</h4>
+                <ul style="color: #1e3a8a; padding-left: 18px; font-size: 14px; line-height: 2;">
+                    <li>Multi-criteria job search</li>
+                    <li>Dual-role portal authentication</li>
+                    <li>Resume attachment &amp; storage</li>
+                    <li>Role-based dashboards</li>
+                    <li>Real-time application verification</li>
+                </ul>
+                <hr style="border-color: #bfdbfe;" />
+                <a href="@Url.Action("jobview_load", "Jobsearch")" class="btn-portal-primary btn-block-portal">Explore Open Positions</a>
+            </div>
+        </div>
+    </div>
+</div>

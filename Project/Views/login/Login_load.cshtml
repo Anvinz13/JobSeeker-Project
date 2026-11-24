@@ -1,31 +1,59 @@
 ﻿@model Project.Models.loginmodel
 @{
-    ViewBag.Title = "Login_load";
+    ViewBag.Title = "Sign In";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>LOGIN</h2>
-@using (Html.BeginForm("Login_click", "login", FormMethod.Get))
-{
-<div>
-    <label>Username</label>
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="auth-icon">
+                <span class="glyphicon glyphicon-lock"></span>
+            </div>
+            <h2>Welcome Back</h2>
+            <p>Sign in to access your jobs, applications, and dashboard</p>
+        </div>
+
+        @if (Model != null && !string.IsNullOrEmpty(Model.logmsg))
+        {
+            <div class="alert-modern alert-modern-danger">
+                <span class="glyphicon glyphicon-exclamation-sign" style="margin-right: 6px;"></span>
+                @(Model.logmsg.Equals("invalid", StringComparison.OrdinalIgnoreCase) ? "Invalid username or password. Please try again." : Model.logmsg)
+            </div>
+        }
+
+        @using (Html.BeginForm("Login_click", "login", FormMethod.Post))
+        {
+            <div class="form-group-modern">
+                <label for="username">Username</label>
+                @Html.TextBoxFor(m => m.username, new { @class = "input-modern", placeholder = "Enter your username", required = "required", autocomplete = "username" })
+                @Html.ValidationMessageFor(m => m.username)
+            </div>
+
+            <div class="form-group-modern">
+                <label for="pass">Password</label>
+                @Html.PasswordFor(m => m.pass, new { @class = "input-modern", placeholder = "Enter your password", required = "required", autocomplete = "current-password" })
+                @Html.ValidationMessageFor(m => m.pass)
+            </div>
+
+            <div style="margin-top: 25px; margin-bottom: 20px;">
+                <button type="submit" class="btn-portal-primary btn-block-portal">
+                    Sign In &raquo;
+                </button>
+            </div>
+        }
+
+        <hr style="border-color: #e2e8f0; margin: 25px 0 20px 0;" />
+
+        <div class="text-center" style="font-size: 13.5px;">
+            <p style="margin-bottom: 8px;">
+                Don't have an account?
+            </p>
+            <div style="display: flex; justify-content: center; gap: 15px;">
+                <a href="@Url.Action("user_load", "User")" style="font-weight: 600;">Candidate Sign Up</a>
+                <span style="color: #cbd5e1;">|</span>
+                <a href="@Url.Action("company_load", "Unique")" style="font-weight: 600;">Employer Sign Up</a>
+            </div>
+        </div>
+    </div>
 </div>
- <div>
- @Html.TextBoxFor(m => m.username)
-@Html.ValidationMessageFor(m => m.username)
- </div>
-
- <div>
-  <label>Password</label>
- </div>
- <div>
- @Html.TextBoxFor(m => m.pass)
- @Html.ValidationMessageFor(m => m.pass)
- </div>
-<div>
- <div>
- <input type="submit" value="LOGIN" />
-  @Html.DisplayFor(m => m.logmsg)
- </div>
- </div>}
-

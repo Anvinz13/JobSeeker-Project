@@ -1,17 +1,67 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Contact Us";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="portal-card" style="margin-top: 20px;">
+    <div class="portal-card-header">
+        <h2>Contact &amp; Support</h2>
+        <p>Have questions about registration, job postings, or recruitment? We are here to help.</p>
+    </div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <div class="row">
+        <div class="col-md-7 col-sm-12">
+            <h3 style="font-size: 18px; margin-top: 0; margin-bottom: 20px;">Send Us a Message</h3>
+            
+            <div class="form-group-modern">
+                <label for="contactName">Your Name</label>
+                <input type="text" id="contactName" class="input-modern" placeholder="John Doe" />
+            </div>
+
+            <div class="form-row-2col">
+                <div class="form-group-modern">
+                    <label for="contactEmail">Email Address</label>
+                    <input type="email" id="contactEmail" class="input-modern" placeholder="john@example.com" />
+                </div>
+                <div class="form-group-modern">
+                    <label for="contactCategory">Inquiry Type</label>
+                    <select id="contactCategory" class="input-modern">
+                        <option value="candidate">Job Seeker Support</option>
+                        <option value="employer">Employer / Company Inquiry</option>
+                        <option value="technical">Technical Support</option>
+                        <option value="other">General Question</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group-modern">
+                <label for="contactMessage">Message</label>
+                <textarea id="contactMessage" class="input-modern" rows="4" placeholder="How can our support team assist you today?"></textarea>
+            </div>
+
+            <button type="button" class="btn-portal-primary" onclick="alert('Thank you for reaching out! Our support team will get back to you shortly.');">
+                Submit Inquiry
+            </button>
+        </div>
+
+        <div class="col-md-5 col-sm-12">
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-top: 10px;">
+                <h4 style="font-size: 16px; color: #1e293b; margin-top: 0;">Get in Touch Directly</h4>
+                
+                <div style="margin-top: 18px;">
+                    <strong style="color: #475569; display: block; font-size: 13px; text-transform: uppercase;">Technical &amp; Candidate Support</strong>
+                    <p style="margin: 4px 0 15px 0;"><a href="mailto:support@jobseekerportal.com">support@jobseekerportal.com</a></p>
+                </div>
+
+                <div>
+                    <strong style="color: #475569; display: block; font-size: 13px; text-transform: uppercase;">Employer &amp; Recruiter Relations</strong>
+                    <p style="margin: 4px 0 15px 0;"><a href="mailto:employers@jobseekerportal.com">employers@jobseekerportal.com</a></p>
+                </div>
+
+                <div>
+                    <strong style="color: #475569; display: block; font-size: 13px; text-transform: uppercase;">Operating Hours</strong>
+                    <p style="margin: 4px 0 0 0; color: #64748b;">Monday – Friday: 9:00 AM – 6:00 PM<br />Support response within 24 hours</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

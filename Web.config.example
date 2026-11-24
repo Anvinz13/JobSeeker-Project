@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  JobSeeker Portal - Connection String Configuration Templates
+  Copy relevant connection strings into your Web.config file:
+-->
+<configuration>
+  <connectionStrings>
+
+    <!-- Option 1: Microsoft SQL Server Express (Default) -->
+    <!-- Replace LAPTOP-XXXXX with your computer name or use .\SQLEXPRESS -->
+    <add name="SaaaEntities" 
+         connectionString="metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.\SQLEXPRESS;initial catalog=Saaa;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" 
+         providerName="System.Data.EntityClient" />
+    <add name="importantdataconnection" 
+         connectionString="server=.\SQLEXPRESS;database=Saaa;Integrated security=true;" />
+
+    <!-- Option 2: SQL Server LocalDB (Visual Studio Default) 
+    <add name="SaaaEntities" 
+         connectionString="metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(localdb)\MSSQLLocalDB;initial catalog=Saaa;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" 
+         providerName="System.Data.EntityClient" />
+    <add name="importantdataconnection" 
+         connectionString="server=(localdb)\MSSQLLocalDB;database=Saaa;Integrated security=true;" />
+    -->
+
+    <!-- Option 3: Full SQL Server / Standard Instance (localhost)
+    <add name="SaaaEntities" 
+         connectionString="metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=localhost;initial catalog=Saaa;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" 
+         providerName="System.Data.EntityClient" />
+    <add name="importantdataconnection" 
+         connectionString="server=localhost;database=Saaa;Integrated security=true;" />
+    -->
+
+  </connectionStrings>
+</configuration>

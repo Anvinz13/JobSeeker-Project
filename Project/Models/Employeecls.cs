@@ -22,7 +22,7 @@ namespace Project.Models
         public string desc { set; get; }
         public string username { set; get; }
         public string password { set; get; }
-        [Compare("password", ErrorMessage = "password is matching")]
+        [Compare("password", ErrorMessage = "Passwords do not match")]
         public string cpassword { set; get; }
         public string compmsg { set; get; }
     }

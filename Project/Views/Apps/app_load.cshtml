@@ -1,28 +1,99 @@
 ﻿@model Project.Models.applicationmodel
 @{
-    ViewBag.Title = "app_load";
+    ViewBag.Title = "Submit Application";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var jobId = TempData["Jid"] ?? Session["jid"];
+    var compId = TempData["cid"];
 }
 
-<h2>Application Details</h2>
-<div>
-    @using (Html.BeginForm("app_click", "Apps", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-<div>
-    <label>provide your resume</label>
-</div>
+<div class="row" style="margin-top: 20px;">
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="portal-card">
+            <div class="portal-card-header text-center">
+                <div style="width: 52px; height: 52px; background: #eff6ff; color: #2563eb; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 15px;">
+                    <span class="glyphicon glyphicon-cloud-upload"></span>
+                </div>
+                <h2>Submit Your Job Application</h2>
+                <p>Upload your resume and submit your profile directly to the hiring team</p>
+            </div>
+
+            <!-- Job Reference Summary -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px; display: flex; justify-content: space-around; text-align: center;">
+                @if (jobId != null)
+                {
+                    <div>
+                        <span style="font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase;">Job Reference</span>
+                        <div style="font-weight: 700; color: #1e293b;">Position #@jobId</div>
+                    </div>
+                }
+                @if (compId != null)
+                {
+                    <div>
+                        <span style="font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase;">Company ID</span>
+                        <div style="font-weight: 700; color: #1e293b;">Employer #@compId</div>
+                    </div>
+                }
                 <div>
-                    @Html.TextBox("File", "", new { Type = "File" })
+                    <span style="font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase;">Application Status</span>
+                    <div><span class="badge-portal badge-portal-active">Ready</span></div>
+                </div>
+            </div>
+
+            @if (Model != null && !string.IsNullOrEmpty(Model.msg))
+            {
+                <div class="alert-modern alert-modern-success">
+                    <span class="glyphicon glyphicon-ok-circle" style="margin-right: 6px;"></span>
+                    @Model.msg
+                </div>
+            }
+
+            @using (Html.BeginForm("app_click", "Apps", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <!-- Preserve TempData for form post -->
+                <input type="hidden" name="comp_id" value="@compId" />
+                <input type="hidden" name="Job_id" value="@jobId" />
+
+                <div class="form-group-modern">
+                    <label for="file" style="font-size: 14px; margin-bottom: 10px;">Select Resume / Curriculum Vitae <span style="color: #ef4444;">*</span></label>
+                    
+                    <div class="upload-dropzone" onclick="document.getElementById('file').click();">
+                        <div class="upload-icon">
+                            <span class="glyphicon glyphicon-file"></span>
+                        </div>
+                        <h4 style="font-size: 16px; margin: 0 0 6px 0; color: #1e293b;">Click to browse your resume file</h4>
+                        <p style="margin: 0; font-size: 13px; color: #64748b;">Supported file formats: PDF, DOCX, DOC (Max file size: 10MB)</p>
+                        
+                        <div id="file-chosen" style="margin-top: 10px; font-weight: 600; color: #2563eb; display: none;"></div>
+                    </div>
+
+                    <input type="file" name="file" id="file" style="display: none;" required="required" onchange="showFileName(this)" />
                 </div>
 
-                                <div>
-                                    <input type="submit" value="upload your application" />
-                                    @Html.DisplayFor(m => m.msg)
-                                </div>}
+                <div style="margin-top: 25px;">
+                    <button type="submit" class="btn-portal-primary btn-block-portal" style="padding: 12px; font-size: 16px;">
+                        <span class="glyphicon glyphicon-send" style="margin-right: 6px;"></span> Submit Application Now
+                    </button>
+                </div>
+
+                <div class="text-center" style="margin-top: 15px;">
+                    <a href="@Url.Action("jobview_load", "Jobsearch")" class="btn-portal-secondary" style="font-size: 13.5px;">
+                        &laquo; Cancel &amp; Back to Jobs
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
 </div>
-@{ if (TempData["msg"] != null)
-    {
+
 <script>
-            alert('@TempData["msg"]')
+    function showFileName(input) {
+        var label = document.getElementById('file-chosen');
+        if (input.files && input.files.length > 0) {
+            label.textContent = "Selected: " + input.files[0].name;
+            label.style.display = "block";
+        } else {
+            label.textContent = "";
+            label.style.display = "none";
+        }
+    }
 </script>
- } }

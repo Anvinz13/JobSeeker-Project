@@ -1,31 +1,109 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Welcome to JobSeeker - Find Your Next Career";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<!-- Hero Banner -->
+<div class="hero-wrapper">
+    <div class="row" style="position: relative; z-index: 2;">
+        <div class="col-md-8 col-sm-12">
+            <h1>Connecting Ambitious Talent With Top Employers</h1>
+            <p class="hero-lead">Explore thousands of career opportunities, upload your resume, and connect with verified companies ready to hire today.</p>
+            <div class="hero-actions">
+                <a href="@Url.Action("jobview_load", "Jobsearch")" class="btn-portal-primary" style="padding: 14px 28px; font-size: 16px;">
+                    Search Jobs &raquo;
+                </a>
+                <a href="@Url.Action("user_load", "User")" class="btn-portal-secondary" style="background: rgba(255, 255, 255, 0.15); color: #ffffff !important; border-color: rgba(255, 255, 255, 0.3); padding: 14px 28px; font-size: 16px;">
+                    Register as Job Seeker
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- Quick Metric Highlights -->
+<div class="stats-ribbon">
+    <div class="row">
+        <div class="col-md-3 col-sm-6 stat-item">
+            <div class="stat-number">10,000+</div>
+            <div class="stat-label">Active Job Seekers</div>
+        </div>
+        <div class="col-md-3 col-sm-6 stat-item">
+            <div class="stat-number">2,500+</div>
+            <div class="stat-label">Verified Postings</div>
+        </div>
+        <div class="col-md-3 col-sm-6 stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Partner Companies</div>
+        </div>
+        <div class="col-md-3 col-sm-6 stat-item">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Hiring Satisfaction</div>
+        </div>
+    </div>
+</div>
+
+<!-- Role Section: Job Seekers & Employers -->
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="col-md-6 col-sm-12" style="margin-bottom: 25px;">
+        <div class="feature-card">
+            <div class="card-icon" style="background: #eff6ff; color: #2563eb;">
+                <span class="glyphicon glyphicon-user"></span>
+            </div>
+            <h3>For Job Seekers</h3>
+            <p>Accelerate your career journey. Build your profile, showcase your skills, upload your resume, and apply to openings with trusted employers.</p>
+            <ul style="color: #64748b; padding-left: 20px; margin-bottom: 25px;">
+                <li style="margin-bottom: 8px;">Filter by skills, experience level, and preferred location</li>
+                <li style="margin-bottom: 8px;">Instant 1-click resume submission</li>
+                <li style="margin-bottom: 8px;">Direct application tracking</li>
+            </ul>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="@Url.Action("user_load", "User")" class="btn-portal-primary">Create Seeker Profile</a>
+                <a href="@Url.Action("jobview_load", "Jobsearch")" class="btn-portal-secondary">Explore Jobs</a>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div class="col-md-6 col-sm-12" style="margin-bottom: 25px;">
+        <div class="feature-card">
+            <div class="card-icon" style="background: #f0fdf4; color: #16a34a;">
+                <span class="glyphicon glyphicon-briefcase"></span>
+            </div>
+            <h3>For Employers &amp; Recruiters</h3>
+            <p>Reach qualified talent quickly and efficiently. Post your vacancies, manage application pipelines, and hire the right candidate for your team.</p>
+            <ul style="color: #64748b; padding-left: 20px; margin-bottom: 25px;">
+                <li style="margin-bottom: 8px;">Fast, seamless job posting workflow</li>
+                <li style="margin-bottom: 8px;">Receive candidate resumes instantly</li>
+                <li style="margin-bottom: 8px;">Filter candidates by skills and qualifications</li>
+            </ul>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="@Url.Action("company_load", "Unique")" class="btn-portal-primary" style="background: linear-gradient(135deg, #16a34a, #15803d);">Register Company</a>
+                <a href="@Url.Action("Login_load", "login")" class="btn-portal-secondary">Employer Login</a>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</div>
+
+<!-- Workflow Steps -->
+<div class="portal-card" style="margin-top: 20px;">
+    <div class="portal-card-header text-center">
+        <h2>How JobSeeker Works</h2>
+        <p>Three straightforward steps to finding or filling your next opportunity</p>
+    </div>
+    <div class="row text-center" style="margin-top: 30px;">
+        <div class="col-md-4 col-sm-12" style="margin-bottom: 20px;">
+            <div style="width: 50px; height: 50px; background: #eff6ff; color: #2563eb; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; margin-bottom: 15px;">1</div>
+            <h4>Create an Account</h4>
+            <p>Register as a job candidate or company recruiter in less than two minutes.</p>
+        </div>
+        <div class="col-md-4 col-sm-12" style="margin-bottom: 20px;">
+            <div style="width: 50px; height: 50px; background: #eff6ff; color: #2563eb; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; margin-bottom: 15px;">2</div>
+            <h4>Match &amp; Connect</h4>
+            <p>Search active job listings by location, tech stack, and experience, or publish new vacancies.</p>
+        </div>
+        <div class="col-md-4 col-sm-12" style="margin-bottom: 20px;">
+            <div style="width: 50px; height: 50px; background: #eff6ff; color: #2563eb; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; margin-bottom: 15px;">3</div>
+            <h4>Apply &amp; Get Hired</h4>
+            <p>Submit your resume directly to employers and start your interview process.</p>
+        </div>
     </div>
 </div>

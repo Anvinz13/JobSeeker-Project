@@ -1,39 +1,90 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@(string.IsNullOrWhiteSpace(ViewBag.Title) ? "JobSeeker Portal" : ViewBag.Title + " - JobSeeker Portal")</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                    <span class="logo-badge">JS</span> JobSeeker
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Find Jobs", "jobview_load", "Jobsearch")</li>
+                    <li>@Html.ActionLink("About Us", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["id"] != null)
+                    {
+                        <li>@Html.ActionLink("User Dashboard", "Userhome", "login")</li>
+                        <li>@Html.ActionLink("Company Dashboard", "Adminhome", "login")</li>
+                        <li>@Html.ActionLink("Sign Out", "Logout", "login", null, new { @class = "nav-btn-outline" })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Seeker Sign Up", "user_load", "User")</li>
+                        <li>@Html.ActionLink("Sign In", "Login_load", "login", null, new { @class = "nav-btn-outline" })</li>
+                        <li>@Html.ActionLink("Post a Job", "company_load", "Unique", null, new { @class = "nav-btn-primary" })</li>
+                    }
                 </ul>
             </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+
+    <footer class="portal-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 style="font-weight: 800; color: #2563eb; margin-top:0;">JobSeeker Portal</h4>
+                    <p style="max-width: 420px;">Connecting ambitious talent with leading companies worldwide. Discover your next career move or hire qualified candidates with ease.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <h5 style="font-weight: 700;">Quick Links</h5>
+                    <ul class="portal-footer-links" style="flex-direction: column; gap: 8px;">
+                        <li>@Html.ActionLink("Explore Jobs", "jobview_load", "Jobsearch")</li>
+                        <li>@Html.ActionLink("Register as Seeker", "user_load", "User")</li>
+                        <li>@Html.ActionLink("Register as Employer", "company_load", "Unique")</li>
+                        <li>@Html.ActionLink("Sign In", "Login_load", "login")</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <h5 style="font-weight: 700;">Company</h5>
+                    <ul class="portal-footer-links" style="flex-direction: column; gap: 8px;">
+                        <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact Support", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+            <hr style="border-color: #e2e8f0; margin: 25px 0 15px 0;" />
+            <div class="row">
+                <div class="col-sm-6 text-left">
+                    <p>&copy; @DateTime.Now.Year JobSeeker Portal. All rights reserved.</p>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <p>Built with ASP.NET MVC &amp; SQL Server</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

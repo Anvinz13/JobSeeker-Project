@@ -1,13 +1,77 @@
-﻿
-@{
-    ViewBag.Title = "Userhome";
+﻿@{
+    ViewBag.Title = "Candidate Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Userhome</h2>
+<div class="portal-card" style="margin-top: 20px;">
+    <div class="portal-card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div>
+            <h2>Candidate Dashboard</h2>
+            <p>Welcome back! Explore verified job postings and manage your job applications.</p>
+        </div>
+        <div style="margin-top: 10px;">
+            <a href="@Url.Action("jobview_load", "Jobsearch")" class="btn-portal-primary">
+                <span class="glyphicon glyphicon-search" style="margin-right: 5px;"></span> Explore Available Jobs
+            </a>
+        </div>
+    </div>
 
+    <!-- Quick Stats -->
+    <div class="row" style="margin-top: 10px; margin-bottom: 25px;">
+        <div class="col-md-4 col-sm-6" style="margin-bottom: 15px;">
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center;">
+                <div style="font-size: 28px; font-weight: 800; color: #2563eb;">Active</div>
+                <div style="font-size: 13px; font-weight: 600; color: #64748b; text-transform: uppercase;">Portal Status</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6" style="margin-bottom: 15px;">
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center;">
+                <div style="font-size: 28px; font-weight: 800; color: #16a34a;">Direct</div>
+                <div style="font-size: 13px; font-weight: 600; color: #64748b; text-transform: uppercase;">Company Review</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12" style="margin-bottom: 15px;">
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center;">
+                <div style="font-size: 28px; font-weight: 800; color: #0284c7;">Instant</div>
+                <div style="font-size: 13px; font-weight: 600; color: #64748b; text-transform: uppercase;">Resume Submission</div>
+            </div>
+        </div>
+    </div>
 
-<div>
-    @Html.ActionLink("View Job", "jobview_load", "Jobsearch")
+    <!-- Action Cards -->
+    <div class="row">
+        <div class="col-md-6 col-sm-12" style="margin-bottom: 20px;">
+            <div class="dashboard-card" style="height: 100%;">
+                <div>
+                    <div class="dashboard-card-icon">
+                        <span class="glyphicon glyphicon-briefcase"></span>
+                    </div>
+                    <h3>Search &amp; Apply for Jobs</h3>
+                    <p>Filter open positions by skills, required years of experience, and job location. Review details and apply with your resume in one click.</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="@Url.Action("jobview_load", "Jobsearch")" class="btn-portal-primary btn-block-portal">
+                        View Open Jobs &raquo;
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12" style="margin-bottom: 20px;">
+            <div class="dashboard-card" style="height: 100%;">
+                <div>
+                    <div class="dashboard-card-icon" style="background: #ecfdf5; color: #16a34a;">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </div>
+                    <h3>Candidate Profile Registration</h3>
+                    <p>Review or register candidate qualifications, key skills, experience level, contact details, and account credentials.</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="@Url.Action("user_load", "User")" class="btn-portal-secondary btn-block-portal">
+                        Registration Page &raquo;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-

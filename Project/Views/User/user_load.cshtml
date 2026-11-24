@@ -1,126 +1,144 @@
 ﻿@model Project.Models.Usercls
 @{
-    ViewBag.Title = "user_load";
+    ViewBag.Title = "Job Seeker Registration";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Employee Registration</h2>
-<div>
-    @using (Html.BeginForm("user_click", "User", FormMethod.Post))
-    {
-        <div>
-            <label>Name:</label>
-        </div>
-        <div>
-            @Html.TextBoxFor(m => m.name)
-            @Html.ValidationMessageFor(m => m.name)
-        </div>
+<div class="row" style="margin-top: 20px;">
+    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+        <div class="portal-card">
+            <div class="portal-card-header">
+                <h2>Job Seeker Registration</h2>
+                <p>Create your candidate profile to start applying for jobs across top companies</p>
+            </div>
 
-
-        <div>
-            <label>Age:</label>
-        </div>
-        <div>
-            @Html.TextBoxFor(m => m.age)
-            @Html.ValidationMessageFor(m => m.age)
-        </div>
-
-
-        <div>
-            <label>Address:</label>
-        </div>
-        <div>
-            @Html.TextAreaFor(m => m.address)
-            @Html.ValidationMessageFor(m => m.address)
-        </div>
-
-        <div>
-            <label>Phone:</label>
-        </div>
-        <div>
-            @Html.TextBoxFor(m => m.phone)
-            @Html.ValidationMessageFor(m => m.phone)
-        </div>
-
-        <div>
-            <label>Email:</label>
-        </div>
-        <div>
-            @Html.TextBoxFor(m => m.email)
-            @Html.ValidationMessageFor(m => m.email)
-        </div>
-
-        <div>
-            <label>Gender:</label>
-        </div>
-        <div>
-            Male
-            @Html.RadioButtonFor(m => m.gender, "Male")
-
-            Female
-            @Html.RadioButtonFor(m => m.gender, "Female")
-        </div>
-
-        <div>
-            <label>Qualification:</label>
-        </div>
-        <div>
-
-            @foreach (var item in Model.MyQual)
+            @if (Model != null && !string.IsNullOrEmpty(Model.usermsg))
             {
-                <label>
-                    <input type="checkbox" value="@item.Value" checked="@item.IsChecked" name="selectedqual" id="@item.Value" /> @Html.Raw(item.Text)
-                </label>
+                <div class="alert-modern alert-modern-success">
+                    <span class="glyphicon glyphicon-ok-circle" style="margin-right: 6px;"></span>
+                    <strong>@Model.usermsg!</strong> You can now <a href="@Url.Action("Login_load", "login")" style="font-weight: 700; text-decoration: underline;">Sign In to your account</a>.
+                </div>
             }
 
-        </div>
+            @using (Html.BeginForm("user_click", "User", FormMethod.Post))
+            {
+                <!-- Section 1: Personal Information -->
+                <h4 style="font-weight: 700; color: #1e293b; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 20px;">
+                    1. Personal Details
+                </h4>
 
-        <div>
-            <label>Experience:</label>
-        </div>
-        <div>
-            @Html.TextBoxFor(m => m.exp)
-            @Html.ValidationMessageFor(m => m.exp)
-        </div>
+                <div class="form-row-2col">
+                    <div class="form-group-modern">
+                        <label for="name">Full Name <span style="color: #ef4444;">*</span></label>
+                        @Html.TextBoxFor(m => m.name, new { @class = "input-modern", placeholder = "e.g. Alex Johnson" })
+                        @Html.ValidationMessageFor(m => m.name)
+                    </div>
+                    <div class="form-group-modern">
+                        <label for="age">Age <span style="color: #ef4444;">*</span></label>
+                        @Html.TextBoxFor(m => m.age, new { @class = "input-modern", placeholder = "e.g. 25", type = "number", min = "18", max = "50" })
+                        @Html.ValidationMessageFor(m => m.age)
+                    </div>
+                </div>
 
-        <div>
-            <label>Skills:</label>
-        </div>
-        <div>
-            @Html.TextAreaFor(m => m.skill)
-            @Html.ValidationMessageFor(m => m.skill)
-        </div>
+                <div class="form-row-2col">
+                    <div class="form-group-modern">
+                        <label for="phone">Phone Number <span style="color: #ef4444;">*</span></label>
+                        @Html.TextBoxFor(m => m.phone, new { @class = "input-modern", placeholder = "10-digit mobile number", maxlength = "10" })
+                        @Html.ValidationMessageFor(m => m.phone)
+                    </div>
+                    <div class="form-group-modern">
+                        <label for="email">Email Address <span style="color: #ef4444;">*</span></label>
+                        @Html.TextBoxFor(m => m.email, new { @class = "input-modern", placeholder = "alex@example.com", type = "email" })
+                        @Html.ValidationMessageFor(m => m.email)
+                    </div>
+                </div>
 
-        <div>
-            <label>Username:</label>
-        </div>
-        <div>
-            @Html.TextBoxFor(m => m.username)
-        </div>
+                <div class="form-group-modern">
+                    <label>Gender <span style="color: #ef4444;">*</span></label>
+                    <div class="gender-toggle">
+                        <label>
+                            @Html.RadioButtonFor(m => m.gender, "Male") Male
+                        </label>
+                        <label>
+                            @Html.RadioButtonFor(m => m.gender, "Female") Female
+                        </label>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.gender)
+                </div>
 
-        <div>
-            <label>Password:</label>
+                <div class="form-group-modern">
+                    <label for="address">Address <span style="color: #ef4444;">*</span></label>
+                    @Html.TextAreaFor(m => m.address, new { @class = "input-modern", rows = "2", placeholder = "City, State, Postal Code" })
+                    @Html.ValidationMessageFor(m => m.address)
+                </div>
+
+                <!-- Section 2: Education & Skills -->
+                <h4 style="font-weight: 700; color: #1e293b; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 8px; margin-top: 30px; margin-bottom: 20px;">
+                    2. Qualifications &amp; Skills
+                </h4>
+
+                <div class="form-group-modern">
+                    <label>Educational Qualifications (Select all that apply)</label>
+                    <div class="options-pill-group">
+                        @if (Model != null && Model.MyQual != null)
+                        {
+                            foreach (var item in Model.MyQual)
+                            {
+                                <label class="pill-option" for="@item.Value">
+                                    <input type="checkbox" value="@item.Value" @(item.IsChecked ? "checked=\"checked\"" : "") name="selectedqual" id="@item.Value" />
+                                    <span>@Html.Raw(item.Text)</span>
+                                </label>
+                            }
+                        }
+                    </div>
+                </div>
+
+                <div class="form-row-2col">
+                    <div class="form-group-modern">
+                        <label for="exp">Experience <span style="color: #ef4444;">*</span></label>
+                        @Html.TextBoxFor(m => m.exp, new { @class = "input-modern", placeholder = "e.g. 2 Years, Fresh Graduate" })
+                        @Html.ValidationMessageFor(m => m.exp)
+                    </div>
+                    <div class="form-group-modern">
+                        <label for="skill">Technical / Core Skills <span style="color: #ef4444;">*</span></label>
+                        @Html.TextBoxFor(m => m.skill, new { @class = "input-modern", placeholder = "e.g. C#, ASP.NET, SQL, JavaScript" })
+                        @Html.ValidationMessageFor(m => m.skill)
+                    </div>
+                </div>
+
+                <!-- Section 3: Credentials -->
+                <h4 style="font-weight: 700; color: #1e293b; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 8px; margin-top: 30px; margin-bottom: 20px;">
+                    3. Account Credentials
+                </h4>
+
+                <div class="form-group-modern">
+                    <label for="username">Choose Username <span style="color: #ef4444;">*</span></label>
+                    @Html.TextBoxFor(m => m.username, new { @class = "input-modern", placeholder = "Choose a unique username", required = "required" })
+                    @Html.ValidationMessageFor(m => m.username)
+                </div>
+
+                <div class="form-row-2col">
+                    <div class="form-group-modern">
+                        <label for="password">Password <span style="color: #ef4444;">*</span></label>
+                        @Html.PasswordFor(m => m.password, new { @class = "input-modern", placeholder = "Create a secure password", required = "required" })
+                        @Html.ValidationMessageFor(m => m.password)
+                    </div>
+                    <div class="form-group-modern">
+                        <label for="cpassword">Confirm Password <span style="color: #ef4444;">*</span></label>
+                        @Html.PasswordFor(m => m.cpassword, new { @class = "input-modern", placeholder = "Re-enter your password", required = "required" })
+                        @Html.ValidationMessageFor(m => m.cpassword)
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+                    <button type="submit" class="btn-portal-primary" style="padding: 12px 30px; font-size: 16px;">
+                        Complete Registration &raquo;
+                    </button>
+                    <span style="font-size: 14px; color: #64748b;">
+                        Already registered? <a href="@Url.Action("Login_load", "login")" style="font-weight: 600;">Sign in here</a>
+                    </span>
+                </div>
+            }
         </div>
-        <div>
-            @Html.PasswordFor(m => m.password)
-        </div>
-
-        <div>
-            <label>Confirm Password:</label>
-        </div>
-        <div>
-            @Html.PasswordFor(m => m.cpassword)
-            @Html.ValidationMessageFor(m => m.cpassword)
-        </div>
-
-        <div>
-            <input type="submit" value=" Register" />
-            @Html.DisplayFor(m => m.usermsg)
-        </div>
-
-
-
-
-    }
+    </div>
 </div>
-

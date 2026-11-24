@@ -1,170 +1,148 @@
 ﻿@model Project.Models.Jobsearch
 @{
-    ViewBag.Title = "jobview_load";
+    ViewBag.Title = "Explore Jobs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    body {
-        font-family: 'Segoe UI', sans-serif;
-        background-color: #f4f6f8;
-        color: #333;
-    }
-
-    h2 {
-        text-align: center;
-        color: #1a237e;
-        margin-top: 20px;
-        font-weight: 600;
-    }
-
-    .search-box {
-        width: 100%;
-        border-radius: 8px;
-        background: #e0e0e0;
-        padding: 15px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-        .search-box input[type="text"] {
-            width: 95%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-
-        .search-box input[type="submit"] {
-            background-color: #1a237e;
-            color: #fff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-            .search-box input[type="submit"]:hover {
-                background-color: #283593;
-            }
-
-    table.table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 25px;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.05);
-    }
-
-        table.table th {
-            background-color: #1a237e;
-            color: white;
-            text-align: left;
-            padding: 10px;
-            font-size: 15px;
-        }
-
-        table.table td {
-            padding: 10px;
-            border-bottom: 1px solid white;
-            border-right: 1px solid white;
-        }
-
-        table.table tr:nth-child(even) {
-            background-color: #f5f5f5;
-        }
-
-        table.table tr:nth-child(odd) {
-            background-color: #ffffff;
-        }
-
-        table.table tr:hover {
-            background-color: #e3f2fd;
-            transition: 0.2s;
-        }
-
-    .button {
-        background-color: #1a237e;
-        color: white;
-        padding: 5px 10px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-size: 13px;
-        transition: 0.3s;
-    }
-
-        .button:hover {
-            background-color: #283593;
-        }
-</style>
-
-<h2>Find Your Jobs Here..</h2>
-
-@using (Html.BeginForm("jobsearch_click", "Jobsearch", FormMethod.Post))
+<!-- Notification Alert -->
+@if (TempData["msg"] != null)
 {
-    <div class="search-box">
-        <table style="width:100%;">
-            <tr>
-                <td style="width:25%; padding-right:10px;">
-                    @Html.TextBoxFor(m => m.interse.skill, new { placeholder = "skills" })
-                </td>
-                <td style="width:25%; padding-right:10px;">
-                    @Html.TextBoxFor(m => m.interse.exp, new { placeholder = "experience" })
-                </td>
-                <td style="width:25%; padding-right:10px;">
-                    @Html.TextBoxFor(m => m.interse.location, new { placeholder = "location" })
-                </td>
-                <td style="width:25%; text-align:right;">
-                    <input type="submit" value="Search" />
-                </td>
-            </tr>
-        </table>
-    </div>}
-@if (Model.selectjob != null && Model.selectjob.Any())
-{
-    <table class="table">
-        <tr>
-            <th>Company</th>
-
-            <th>Skills</th>
-            <th>Experience</th>
-            <th>Job_status</th>
-            <th>End Date</th>
-            <th>Location</th>
-            <th>Salary</th>
-            <th>Action</th>
-        </tr>
-
-        @foreach (var item in Model.selectjob)
-        {
-            <tr>
-                <td>@item.Company_id</td>
-                <td>@item.skill</td>
-                <td>@item.exp</td>
-                <td>@item.job_status</td>
-                <td>@item.date.</td>
-                <td>@item.location</td>
-                <td>@item.salary</td>
-                <td>
-                    @Html.ActionLink("Apply Now", "app_load", "Apps",
-                             new { jid = item.Job_id, cid = item.Company_id },
-                             new { @class = "button" })
-                </td>
-            </tr>
+    <div class="alert-modern alert-modern-info" style="margin-top: 20px;">
+        <span class="glyphicon glyphicon-info-sign" style="margin-right: 6px;"></span>
+        <strong>Notice:</strong> @TempData["msg"]
+    </div>
 }
-    </table> }
+
+<div style="margin-top: 20px; margin-bottom: 25px;">
+    <h2>Explore Career Opportunities</h2>
+    <p>Find the best matching jobs across top industries. Filter by skills, required experience, and location.</p>
+</div>
+
+<!-- Search Filter Bar -->
+<div class="search-filter-card">
+    @using (Html.BeginForm("jobsearch_click", "Jobsearch", FormMethod.Post))
+    {
+        <div class="search-grid">
+            <div class="form-group-modern" style="margin-bottom: 0;">
+                <label for="skillSearch">Skills / Tech Stack</label>
+                @Html.TextBoxFor(m => m.interse.skill, new { @class = "input-modern", id = "skillSearch", placeholder = "e.g. C#, SQL, React..." })
+            </div>
+            <div class="form-group-modern" style="margin-bottom: 0;">
+                <label for="expSearch">Experience</label>
+                @Html.TextBoxFor(m => m.interse.exp, new { @class = "input-modern", id = "expSearch", placeholder = "e.g. 2 Years, Fresh..." })
+            </div>
+            <div class="form-group-modern" style="margin-bottom: 0;">
+                <label for="locSearch">Location</label>
+                @Html.TextBoxFor(m => m.interse.location, new { @class = "input-modern", id = "locSearch", placeholder = "e.g. Remote, City..." })
+            </div>
+            <div>
+                <button type="submit" class="btn-portal-primary btn-block-portal" style="height: 44px; padding: 10px 20px;">
+                    <span class="glyphicon glyphicon-search" style="margin-right: 5px;"></span> Search
+                </button>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Search Results Header -->
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+    <div style="font-size: 15px; font-weight: 600; color: #475569;">
+        @if (Model != null && Model.selectjob != null && Model.selectjob.Any())
+        {
+            <span>Showing <span style="color: #2563eb; font-weight: 700;">@Model.selectjob.Count</span> available positions</span>
+        }
+        else
+        {
+            <span>0 jobs found</span>
+        }
+    </div>
+    <div>
+        <a href="@Url.Action("jobview_load", "Jobsearch")" class="btn-portal-secondary" style="padding: 6px 14px; font-size: 13px;">
+            <span class="glyphicon glyphicon-refresh" style="margin-right: 4px;"></span> Reset All Filters
+        </a>
+    </div>
+</div>
+
+<!-- Results Table / Cards -->
+@if (Model != null && Model.selectjob != null && Model.selectjob.Any())
+{
+    <div class="modern-table-container table-responsive">
+        <table class="table modern-table">
+            <thead>
+                <tr>
+                    <th>Job ID</th>
+                    <th>Company</th>
+                    <th>Required Skills</th>
+                    <th>Experience</th>
+                    <th>Location</th>
+                    <th>Salary</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    <th style="text-align: right;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.selectjob)
+                {
+                    <tr>
+                        <td>
+                            <strong style="color: #1e293b;">#@item.Job_id</strong>
+                        </td>
+                        <td>
+                            <span style="font-weight: 600; color: #334155;">Company #@item.Company_id</span>
+                        </td>
+                        <td>
+                            <span class="badge-portal badge-portal-skill">@item.skill</span>
+                        </td>
+                        <td>
+                            <span style="color: #475569;">@item.exp</span>
+                        </td>
+                        <td>
+                            <span class="glyphicon glyphicon-map-marker" style="color: #64748b; font-size: 12px; margin-right: 3px;"></span>
+                            @item.location
+                        </td>
+                        <td>
+                            @if (item.salary > 0)
+                            {
+                                <span class="badge-portal badge-portal-salary">$@item.salary.ToString("N0")</span>
+                            }
+                            else
+                            {
+                                <span style="color: #94a3b8;">Competitive</span>
+                            }
+                        </td>
+                        <td>
+                            <span style="color: #64748b; font-size: 13px;">@item.date</span>
+                        </td>
+                        <td>
+                            @{
+                                var isClosed = (item.job_status ?? "").IndexOf("closed", StringComparison.OrdinalIgnoreCase) >= 0;
+                            }
+                            <span class="badge-portal @(isClosed ? "badge-portal-closed" : "badge-portal-active")">
+                                @(string.IsNullOrWhiteSpace(item.job_status) ? "Active" : item.job_status)
+                            </span>
+                        </td>
+                        <td style="text-align: right;">
+                            @Html.ActionLink("Apply Now", "app_load", "Apps",
+                                new { jid = item.Job_id, cid = item.Company_id },
+                                new { @class = "btn-portal-primary", style = "padding: 6px 14px; font-size: 13px;" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
 else
 {
-    <p style="text-align:center; margin-top:20px; color:#666;">No jobs found. Try searching with different filters.</p>}
-@{ if (TempData["msg"] != null)
-    {
-        <script>
-            alert('@TempData["msg"]')
-        </script>
-    } }
-
-
+    <div class="portal-card text-center" style="padding: 50px 20px;">
+        <div style="font-size: 48px; color: #94a3b8; margin-bottom: 15px;">
+            <span class="glyphicon glyphicon-folder-open"></span>
+        </div>
+        <h3 style="margin-top: 0;">No Job Postings Found</h3>
+        <p style="max-width: 450px; margin: 0 auto 20px auto;">We couldn't find any positions matching your search filters. Try clearing your filters or search with different keywords.</p>
+        <a href="@Url.Action("jobview_load", "Jobsearch")" class="btn-portal-primary">
+            Clear Filters &amp; View All Jobs
+        </a>
+    </div>
+}

@@ -1,12 +1,85 @@
-﻿
-@{
-    ViewBag.Title = "Adminhome";
+﻿@{
+    ViewBag.Title = "Employer Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="portal-card" style="margin-top: 20px;">
+    <div class="portal-card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div>
+            <h2>Employer &amp; Recruiter Dashboard</h2>
+            <p>Manage your job postings and connect with qualified job applicants</p>
+        </div>
+        <div style="margin-top: 10px;">
+            <a href="@Url.Action("Job_load", "Jobs")" class="btn-portal-primary">
+                <span class="glyphicon glyphicon-plus" style="margin-right: 5px;"></span> Post a New Job
+            </a>
+        </div>
+    </div>
 
-<h2>Company Home</h2>
-<div>
-    @Html.ActionLink("Add Job", "Job_load", "Jobs")
+    <!-- Metric Cards -->
+    <div class="row" style="margin-top: 10px; margin-bottom: 25px;">
+        <div class="col-md-4 col-sm-6" style="margin-bottom: 15px;">
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center;">
+                <div style="font-size: 28px; font-weight: 800; color: #16a34a;">Verified</div>
+                <div style="font-size: 13px; font-weight: 600; color: #64748b; text-transform: uppercase;">Company Account</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6" style="margin-bottom: 15px;">
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center;">
+                <div style="font-size: 28px; font-weight: 800; color: #2563eb;">Live</div>
+                <div style="font-size: 13px; font-weight: 600; color: #64748b; text-transform: uppercase;">Job Posting Status</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12" style="margin-bottom: 15px;">
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center;">
+                <div style="font-size: 28px; font-weight: 800; color: #8b5cf6;">Fast</div>
+                <div style="font-size: 13px; font-weight: 600; color: #64748b; text-transform: uppercase;">Candidate Matching</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Cards -->
+    <div class="row">
+        <div class="col-md-6 col-sm-12" style="margin-bottom: 20px;">
+            <div class="dashboard-card" style="height: 100%;">
+                <div>
+                    <div class="dashboard-card-icon" style="background: #f0fdf4; color: #16a34a;">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                    </div>
+                    <h3>Post a New Vacancy</h3>
+                    <p>Create a job listing with required skills, desired experience, competitive salary, application deadline, and work location.</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="@Url.Action("Job_load", "Jobs")" class="btn-portal-primary btn-block-portal" style="background: linear-gradient(135deg, #16a34a, #15803d);">
+                        Add New Job &raquo;
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12" style="margin-bottom: 20px;">
+            <div class="dashboard-card" style="height: 100%;">
+                <div>
+                    <div class="dashboard-card-icon">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                    </div>
+                    <h3>Browse All Current Listings</h3>
+                    <p>Check all currently active job postings across the portal to monitor competitor postings and verify your listed jobs.</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="@Url.Action("jobview_load", "Jobsearch")" class="btn-portal-secondary btn-block-portal">
+                        View Portal Listings &raquo;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hiring Best Practices Banner -->
+    <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 20px 24px; margin-top: 15px;">
+        <h4 style="color: #1e40af; font-weight: 700; margin-top: 0;">Recruiter Tip for Faster Hiring</h4>
+        <p style="color: #1e3a8a; margin-bottom: 0; font-size: 14px;">
+            Clearly define key skills (e.g., "C#, ASP.NET, SQL Server, React") and realistic experience requirements in your job description. Listings with specific skills receive 3x more relevant applicants.
+        </p>
+    </div>
 </div>
-

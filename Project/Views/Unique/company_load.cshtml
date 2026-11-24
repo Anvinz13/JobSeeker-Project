@@ -1,87 +1,97 @@
 ﻿@model Project.Models.Employeecls
 @{
-    ViewBag.Title = "company_load";
+    ViewBag.Title = "Employer Registration";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="row" style="margin-top: 20px;">
+    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+        <div class="portal-card">
+            <div class="portal-card-header">
+                <h2>Employer / Company Registration</h2>
+                <p>Register your company on JobSeeker to publish vacancies and discover top candidate talent</p>
+            </div>
 
-<h2>Company Registration</h2>
-<div>
-    @using (Html.BeginForm("company_click", "Unique", FormMethod.Post))
-    {
-        <div>
-            <label>Name:</label>
-        </div>
-        <div>
-            @Html.TextBoxFor(m => m.name)
-            @Html.ValidationMessageFor(m => m.name)
-        </div>
+            @if (Model != null && !string.IsNullOrEmpty(Model.compmsg))
+            {
+                <div class="alert-modern alert-modern-success">
+                    <span class="glyphicon glyphicon-ok-circle" style="margin-right: 6px;"></span>
+                    <strong>@Model.compmsg!</strong> You can now <a href="@Url.Action("Login_load", "login")" style="font-weight: 700; text-decoration: underline;">Sign In with your company credentials</a>.
+                </div>
+            }
 
+            @using (Html.BeginForm("company_click", "Unique", FormMethod.Post))
+            {
+                <!-- Section 1: Company Profile -->
+                <h4 style="font-weight: 700; color: #1e293b; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 20px;">
+                    1. Company Profile
+                </h4>
 
-        <div>
-            <label>Address:</label>
-        </div>
-        <div>
-            @Html.TextAreaFor(m => m.addr)
-            @Html.ValidationMessageFor(m => m.addr)
-        </div>
+                <div class="form-row-2col">
+                    <div class="form-group-modern">
+                        <label for="name">Company Name <span style="color: #ef4444;">*</span></label>
+                        @Html.TextBoxFor(m => m.name, new { @class = "input-modern", placeholder = "e.g. Acme Technologies Ltd." })
+                        @Html.ValidationMessageFor(m => m.name)
+                    </div>
+                    <div class="form-group-modern">
+                        <label for="webaddr">Company Website <span style="color: #ef4444;">*</span></label>
+                        @Html.TextBoxFor(m => m.webaddr, new { @class = "input-modern", placeholder = "e.g. https://www.acme.com" })
+                        @Html.ValidationMessageFor(m => m.webaddr)
+                    </div>
+                </div>
 
+                <div class="form-row-2col">
+                    <div class="form-group-modern">
+                        <label for="phone">Contact Phone <span style="color: #ef4444;">*</span></label>
+                        @Html.TextBoxFor(m => m.phone, new { @class = "input-modern", placeholder = "10-digit office phone", maxlength = "10" })
+                        @Html.ValidationMessageFor(m => m.phone)
+                    </div>
+                    <div class="form-group-modern">
+                        <label for="addr">Headquarters Address <span style="color: #ef4444;">*</span></label>
+                        @Html.TextBoxFor(m => m.addr, new { @class = "input-modern", placeholder = "City, State / Country" })
+                        @Html.ValidationMessageFor(m => m.addr)
+                    </div>
+                </div>
 
-        <div>
-            <label>Phone:</label>
-        </div>
-        <div>
-            @Html.TextBoxFor(m => m.phone)
-            @Html.ValidationMessageFor(m => m.phone)
-        </div>
+                <div class="form-group-modern">
+                    <label for="desc">Company Description &amp; Industry <span style="color: #ef4444;">*</span></label>
+                    @Html.TextAreaFor(m => m.desc, new { @class = "input-modern", rows = "3", placeholder = "Briefly describe your company, culture, and industry..." })
+                    @Html.ValidationMessageFor(m => m.desc)
+                </div>
 
+                <!-- Section 2: Account Credentials -->
+                <h4 style="font-weight: 700; color: #1e293b; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 8px; margin-top: 30px; margin-bottom: 20px;">
+                    2. Employer Account Credentials
+                </h4>
 
-        <div>
-            <label>Web Address:</label>
-        </div>
-        <div>
-            @Html.TextAreaFor(m => m.webaddr)
-            @Html.ValidationMessageFor(m => m.webaddr)
-        </div>
+                <div class="form-group-modern">
+                    <label for="username">Username <span style="color: #ef4444;">*</span></label>
+                    @Html.TextBoxFor(m => m.username, new { @class = "input-modern", placeholder = "e.g. acme_recruiter", required = "required" })
+                    @Html.ValidationMessageFor(m => m.username)
+                </div>
 
+                <div class="form-row-2col">
+                    <div class="form-group-modern">
+                        <label for="password">Password <span style="color: #ef4444;">*</span></label>
+                        @Html.PasswordFor(m => m.password, new { @class = "input-modern", placeholder = "Create a strong password", required = "required" })
+                        @Html.ValidationMessageFor(m => m.password)
+                    </div>
+                    <div class="form-group-modern">
+                        <label for="cpassword">Confirm Password <span style="color: #ef4444;">*</span></label>
+                        @Html.PasswordFor(m => m.cpassword, new { @class = "input-modern", placeholder = "Confirm your password", required = "required" })
+                        @Html.ValidationMessageFor(m => m.cpassword)
+                    </div>
+                </div>
 
-        <div>
-            <label>Company Description:</label>
+                <div style="margin-top: 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+                    <button type="submit" class="btn-portal-primary" style="background: linear-gradient(135deg, #16a34a, #15803d); padding: 12px 30px; font-size: 16px;">
+                        Register Company &raquo;
+                    </button>
+                    <span style="font-size: 14px; color: #64748b;">
+                        Already registered? <a href="@Url.Action("Login_load", "login")" style="font-weight: 600;">Sign in here</a>
+                    </span>
+                </div>
+            }
         </div>
-        <div>
-            @Html.TextAreaFor(m => m.desc)
-            @Html.ValidationMessageFor(m => m.desc)
-        </div>
-
-
-        <div>
-            <label>Username:</label>
-        </div>
-        <div>
-            @Html.TextBoxFor(m => m.username)
-        </div>
-
-        <div>
-            <label>Password:</label>
-        </div>
-        <div>
-            @Html.PasswordFor(m => m.password)
-        </div>
-
-        <div>
-            <label>Confirm Password:</label>
-        </div>
-        <div>
-            @Html.PasswordFor(m => m.cpassword)
-            @Html.ValidationMessageFor(m => m.cpassword)
-        </div>
-
-        <div>
-            <input type="submit" value=" Register" />
-            @Html.DisplayFor(m => m.compmsg)
-        </div>
-    }
+    </div>
 </div>
-
-
-
