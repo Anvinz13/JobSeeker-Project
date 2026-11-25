@@ -84,9 +84,10 @@ cd JobSeeker-Project
 2. Connect to your SQL Server instance (e.g., `.\SQLEXPRESS` or `(localdb)\MSSQLLocalDB` or `localhost`).
 3. Open and execute the provided database script:
    ```
-   JobSeeker_Database.sql
+   Database/JobSeeker_Database.sql
    ```
-   *This script automatically:*
+   *(See [Database/DATABASE_SETUP.md](Database/DATABASE_SETUP.md) for full instructions and procedure references)*
+
    - Creates the database `[Saaa]`.
    - Generates all tables (`Logintab`, `Employee`, `Company`, `Job_tab`, `Apptab`, `Applicationtab`).
    - Installs all 12 stored procedures.
@@ -172,8 +173,10 @@ The database script automatically populates test accounts for immediate verifica
 ## Project Directory Structure
 
 ```
-JobSeeker-Project/
-├── JobSeeker_Database.sql         # Complete SQL Server creation script with seed data
+JobSeeker-Portal/
+├── Database/
+│   ├── JobSeeker_Database.sql     # Complete SQL Server creation script with seed data
+│   └── DATABASE_SETUP.md          # Database setup, architecture & schema reference
 ├── Web.config.example             # Connection string templates for LocalDB & SQL Server
 ├── Project.sln                    # Visual Studio Solution file
 ├── nuget.exe                      # CLI package manager
@@ -204,7 +207,7 @@ JobSeeker-Project/
     │   ├── Shared/                # _Layout.cshtml and error templates
     │   ├── Unique/                # Company registration view
     │   └── User/                  # Candidate registration view
-    ├── resume/                    # Uploaded candidate resume documents
+    ├── resume/                    # Uploaded candidate resumes directory (.gitkeep)
     ├── Model1.edmx                # Entity Framework Data Model mapping
     └── Web.config                 # Application configuration & connection strings
 ```

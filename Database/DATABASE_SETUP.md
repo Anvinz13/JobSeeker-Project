@@ -26,13 +26,13 @@ The repository includes a ready-to-run database initialization script:
    - Insertion of sample test accounts and job postings.
 
 ### Option B: Via Command Line (`sqlcmd`)
-Run from PowerShell or Command Prompt:
+Run from the repository root:
 ```cmd
-sqlcmd -S .\SQLEXPRESS -E -i "JobSeeker_Database.sql"
+sqlcmd -S .\SQLEXPRESS -E -i "Database\JobSeeker_Database.sql"
 ```
 Or for LocalDB:
 ```cmd
-sqlcmd -S (localdb)\MSSQLLocalDB -E -i "JobSeeker_Database.sql"
+sqlcmd -S (localdb)\MSSQLLocalDB -E -i "Database\JobSeeker_Database.sql"
 ```
 
 ---
